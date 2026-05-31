@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>YATHINDU JAYAWARDENA // AI ENGINEER</title>
+  <meta name="description" content="Yathindu Jayawardena — AI Engineer & Full-Stack Developer." />
+  <link rel="icon" type="image/png" href="assets/dedsec-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="loader">
+    <div class="loader-inner">
+      <img class="loader-art" id="loaderArt" src="assets/dedsec-loader.gif" alt="" decoding="async" fetchpriority="high" />
+      <div class="loader-scan" aria-hidden="true"></div>
+      <div class="loader-hud">
+        <div class="loader-bar"><span id="loaderFill"></span></div>
+        <div class="loader-text" id="loaderText">ESTABLISHING SECURE CONNECTION...</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scanlines"></div>
+  <div class="vignette"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <canvas id="bg"></canvas>
+
+  <header class="nav">
+    <a href="#hero" class="nav-logo">
+      <img class="logo-badge" src="assets/dedsec-mark-trans.png" alt="" />
+      <span>DEDSEC<span class="accent">_</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#hero" data-text="HOME">HOME</a>
+    </nav>
+    <div class="nav-status"><span class="dot"></span><span id="navStatus">ONLINE</span></div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <section id="hero" class="section hero">
+    <img class="hero-watermark" src="assets/dedsec-mark.png" alt="" loading="lazy" />
+    <div class="hero-grid-label">// SYSTEM: ctOS_v2.0 &nbsp; // NODE: <span id="heroLoc"></span></div>
+    <div class="hero-content">
+      <div class="hero-handle" id="heroHandle"></div>
+      <h1 class="glitch" id="heroName" data-text=""></h1>
+      <div class="hero-role"><span class="role-prefix">&gt;</span> <span id="heroRole"></span><span class="caret">█</span></div>
+      <p class="hero-tagline" id="heroTagline"></p>
+      <div class="hero-cta">
+        <a href="#" class="btn btn-primary" data-text="VIEW OPS">VIEW OPS</a>
+        <a href="#" class="btn btn-ghost" data-text="ESTABLISH CONTACT">ESTABLISH CONTACT</a>
+        <button type="button" class="btn btn-ghost" data-text="EXTRACT CV">EXTRACT CV</button>
+      </div>
+    </div>
+    <a href="#" class="scroll-hint" aria-label="Scroll down">
+      <span>SCROLL</span><span class="chev">▼</span>
+    </a>
+  </section>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> // built with three.js &amp; caffeine</span>
+    <span class="footer-glitch" data-text="WE ARE DEDSEC">WE ARE DEDSEC</span>
+  </footer>
+
+  <script type="module" src="js/scene.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
