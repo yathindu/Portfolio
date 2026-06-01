@@ -36,6 +36,20 @@
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
+  <div class="profiler" id="profiler" aria-hidden="true">
+    <span class="prof-corner tl"></span><span class="prof-corner tr"></span>
+    <span class="prof-corner bl"></span><span class="prof-corner br"></span>
+    <div class="prof-scan"></div>
+    <div class="prof-head">
+      <span class="prof-id">ctOS // PROFILER</span>
+      <span class="prof-live"><i></i>SCANNING</span>
+    </div>
+    <div class="prof-name" id="profName"></div>
+    <div class="prof-sub" id="profSub"></div>
+    <div class="prof-rows" id="profRows"></div>
+    <div class="prof-note" id="profNote"></div>
+  </div>
+
   <canvas id="bg"></canvas>
 
   <header class="nav">
@@ -44,7 +58,10 @@
       <span>DEDSEC<span class="accent">_</span></span>
     </a>
     <nav class="nav-links" id="navLinks">
-      <a href="#hero" data-text="HOME">HOME</a>
+      <a href="#about"    data-text="ABOUT">ABOUT</a>
+      <a href="#skills"   data-text="SKILLS">SKILLS</a>
+      <a href="#projects" data-text="OPS">OPS</a>
+      <a href="#contact"  data-text="CONTACT">CONTACT</a>
     </nav>
     <div class="nav-status"><span class="dot"></span><span id="navStatus">ONLINE</span></div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
@@ -57,22 +74,74 @@
     <div class="hero-grid-label">// SYSTEM: ctOS_v2.0 &nbsp; // NODE: <span id="heroLoc"></span></div>
     <div class="hero-content">
       <div class="hero-handle" id="heroHandle"></div>
-      <h1 class="glitch" id="heroName" data-text=""></h1>
+      <h1 class="glitch profile-target" id="heroName" data-text=""></h1>
       <div class="hero-role"><span class="role-prefix">&gt;</span> <span id="heroRole"></span><span class="caret">█</span></div>
       <p class="hero-tagline" id="heroTagline"></p>
       <div class="hero-cta">
-        <a href="#" class="btn btn-primary" data-text="VIEW OPS">VIEW OPS</a>
-        <a href="#" class="btn btn-ghost" data-text="ESTABLISH CONTACT">ESTABLISH CONTACT</a>
-        <button type="button" class="btn btn-ghost" data-text="EXTRACT CV">EXTRACT CV</button>
+        <a href="#projects" class="btn btn-primary" data-text="VIEW OPS">VIEW OPS</a>
+        <a href="#contact"  class="btn btn-ghost" data-text="ESTABLISH CONTACT">ESTABLISH CONTACT</a>
+        <button type="button" class="btn btn-ghost" id="cvBtn" data-text="EXTRACT CV">EXTRACT CV</button>
       </div>
     </div>
-    <a href="#" class="scroll-hint" aria-label="Scroll down">
+    <a href="#about" class="scroll-hint" aria-label="Scroll down">
       <span>SCROLL</span><span class="chev">▼</span>
     </a>
   </section>
 
+  <section id="about" class="section about reveal">
+    <div class="section-head">
+      <span class="section-index">01</span>
+      <h2 class="section-title" data-text="// PROFILE">// PROFILE</h2>
+    </div>
+    <div class="about-wrap">
+      <div class="about-text">
+        <h3 id="aboutHeadline" class="about-headline"></h3>
+        <div id="aboutParas"></div>
+      </div>
+      <aside class="about-panel">
+        <div class="panel-head">DECRYPTING OPERATIVE FILE...</div>
+        <div class="stats" id="statsGrid"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="skills" class="section skills reveal">
+    <div class="section-head">
+      <span class="section-index">02</span>
+      <h2 class="section-title" data-text="// ARSENAL">// ARSENAL</h2>
+    </div>
+    <p class="restree-hint">// hover a node to inspect — proficiency shown as research charge</p>
+    <div class="restree-scroll">
+      <div class="restree" id="skillsGrid"></div>
+    </div>
+  </section>
+
+  <section id="projects" class="section projects reveal">
+    <div class="section-head">
+      <span class="section-index">03</span>
+      <h2 class="section-title" data-text="// OPERATIONS">// OPERATIONS</h2>
+    </div>
+    <div class="projects-grid" id="projectsGrid"></div>
+  </section>
+
+  <section id="contact" class="section contact reveal">
+    <div class="section-head">
+      <span class="section-index">04</span>
+      <h2 class="section-title" data-text="// UPLINK">// UPLINK</h2>
+    </div>
+    <div class="contact-terminal">
+      <div class="term-bar">
+        <span class="term-btns"><i></i><i></i><i></i></span>
+        <span class="term-title">secure_shell — uplink</span>
+      </div>
+      <div class="term-body" id="termBody"></div>
+    </div>
+    <div class="socials" id="socials"></div>
+  </section>
+
   <footer class="footer">
     <span>© <span id="year"></span> // built with three.js &amp; caffeine</span>
+    <a class="font-credit" href="http://bit.ly/WatchDogsFont" target="_blank" rel="noopener">Hacked font</a>
     <span class="footer-glitch" data-text="WE ARE DEDSEC">WE ARE DEDSEC</span>
   </footer>
 
