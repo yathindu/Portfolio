@@ -3,13 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#03060a" />
   <title>YATHINDU JAYAWARDENA // AI ENGINEER</title>
-  <meta name="description" content="Yathindu Jayawardena — AI Engineer & Full-Stack Developer." />
+  <meta name="description" content="Yathindu Jayawardena — AI Engineer & Full-Stack Developer. Computer vision, full-stack systems, and team projects that ship. Open to internships." />
+  <meta property="og:title" content="Yathindu Jayawardena // AI Engineer" />
+  <meta property="og:description" content="DedSec-themed portfolio — AI, full-stack, computer vision. Open to internships." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yathindu.netlify.app/" />
+  <meta property="og:image" content="https://yathindu.netlify.app/assets/dedsec-mark.png" />
   <link rel="icon" type="image/png" href="assets/dedsec-mark.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Three.js loaded via import map: no build step required -->
   <script type="importmap">
   {
     "imports": {
@@ -20,22 +28,34 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#hero">Skip to content</a>
+  <!-- ===== BOOT / LOADER ===== -->
   <div id="loader">
     <div class="loader-inner">
-      <img class="loader-art" id="loaderArt" src="assets/dedsec-loader.gif" alt="" decoding="async" fetchpriority="high" />
+      <img
+        class="loader-art"
+        id="loaderArt"
+        src="assets/dedsec-loader.gif"
+        alt="DedSec boot sequence"
+        decoding="async"
+        fetchpriority="high"
+      />
       <div class="loader-scan" aria-hidden="true"></div>
       <div class="loader-hud">
         <div class="loader-bar"><span id="loaderFill"></span></div>
-        <div class="loader-text" id="loaderText">ESTABLISHING SECURE CONNECTION...</div>
+        <div class="loader-text" id="loaderText" aria-live="polite">ESTABLISHING SECURE CONNECTION...</div>
       </div>
     </div>
   </div>
 
+  <!-- ===== GLOBAL FX OVERLAYS ===== -->
   <div class="scanlines"></div>
   <div class="vignette"></div>
+  <div class="interference" id="interference"></div>
   <div class="cursor-dot" id="cursorDot"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
+  <!-- ===== ctOS PROFILER (floating scan card) ===== -->
   <div class="profiler" id="profiler" aria-hidden="true">
     <span class="prof-corner tl"></span><span class="prof-corner tr"></span>
     <span class="prof-corner bl"></span><span class="prof-corner br"></span>
@@ -50,11 +70,119 @@
     <div class="prof-note" id="profNote"></div>
   </div>
 
+  <!-- ===== ctOS VISITOR PROFILER (auto-scan on load) ===== -->
+  <div class="vprofiler" id="vprofiler" aria-hidden="true">
+    <span class="prof-corner tl"></span><span class="prof-corner tr"></span>
+    <span class="prof-corner bl"></span><span class="prof-corner br"></span>
+    <div class="prof-scan"></div>
+    <div class="prof-head">
+      <span class="prof-id">ctOS // INTRUSION DETECTED</span>
+      <span class="prof-live"><i></i>SCANNING</span>
+    </div>
+    <div class="prof-name" id="vpName">PROFILING VISITOR…</div>
+    <div class="prof-sub" id="vpSub">RESOLVING SIGNATURE</div>
+    <div class="prof-rows" id="vpRows"></div>
+    <div class="prof-note" id="vpNote"></div>
+    <button class="vprof-close" id="vpClose" type="button">DISMISS ✕</button>
+  </div>
+
+  <!-- ===== SESSION HUD ===== -->
+  <div class="syshud" id="sysHud" aria-hidden="true">
+    <div class="syshud-row"><span class="syshud-k">ctOS TIME</span><span id="hudClock">--:--:--</span></div>
+    <div class="syshud-row"><span class="syshud-k">TIME ON GRID</span><span id="hudSession">00:00</span></div>
+    <div class="syshud-row"><span class="syshud-k">MONITORING</span><span class="syshud-pulse"><i></i>ACTIVE</span></div>
+  </div>
+
+  <!-- ===== ONE-TIME DISCOVERY HINT ===== -->
+  <div class="dock-hint" id="dockHint" aria-hidden="true">
+    <button class="dock-hint-x" id="dockHintX" type="button" aria-label="Dismiss tip">✕</button>
+    <div class="dock-hint-line">TIP // press <b>~</b> or click <b>&gt;_ SHELL</b> — toggle <b>AUDIO</b> bottom-right for ctOS sounds</div>
+    <div class="dock-hint-line dim">psst… secret unlock: <b>↑ ↑ ↓ ↓ ← → ← → B A</b></div>
+  </div>
+
+  <!-- ===== SYSTEM DOCK (terminal + sound) ===== -->
+  <div class="sysdock" id="sysDock" aria-hidden="true">
+    <button class="dock-btn" id="termOpen" type="button" title="Open ctOS shell (~)" aria-label="Open ctOS shell">&gt;_ SHELL</button>
+    <button class="dock-btn dock-sound off" id="soundToggle" type="button" aria-pressed="false" title="Toggle ctOS audio (muted by default)">
+      <span class="snd-icon" aria-hidden="true"></span>
+      <span class="snd-label">AUDIO OFF</span>
+    </button>
+  </div>
+
+  <!-- ===== INTERACTIVE ctOS TERMINAL ===== -->
+  <div class="termmodal" id="termModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="ctOS shell">
+    <div class="termmodal-win term-classic">
+      <div class="term-bar">
+        <span class="term-title">ctOS_shell — type 'help' · ESC to close</span>
+        <button class="termmodal-x" id="termClose" type="button" aria-label="Close ctOS shell">✕</button>
+      </div>
+      <div class="term-screen">
+        <div class="term-bg" aria-hidden="true">
+          <img src="assets/dedsec-loader.gif" alt="" decoding="async" loading="lazy" />
+        </div>
+        <p class="term-hint" id="termHint">Type <kbd>help</kbd> for commands · <kbd>ESC</kbd> to close</p>
+        <div class="termmodal-scroll">
+          <div class="termmodal-out" id="termOut"></div>
+        </div>
+      </div>
+      <div class="termmodal-line">
+        <span class="termmodal-ps">y4thindu@ctos:~$</span>
+        <input class="termmodal-in" id="termIn" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="ctOS shell input" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CASE STUDY MODAL (operations intel) ===== -->
+  <div class="ctmodal" id="caseModal" aria-hidden="true">
+    <div class="ctmodal-backdrop" data-close="case"></div>
+    <div class="ctmodal-win" role="dialog" aria-labelledby="caseTitle">
+      <button type="button" class="ctmodal-x" data-close="case" aria-label="Close intel">✕</button>
+      <div class="ctmodal-meta">
+        <span class="ctmodal-id" id="caseId"></span>
+        <span class="ctmodal-tag" id="caseTag"></span>
+      </div>
+      <h2 class="ctmodal-title" id="caseTitle"></h2>
+      <div class="ctmodal-body">
+        <div class="case-block"><h4>// PROBLEM</h4><p id="caseProblem"></p></div>
+        <div class="case-block"><h4>// STACK</h4><div class="case-tech" id="caseTech"></div></div>
+        <div class="case-block"><h4>// OUTCOME</h4><p id="caseOutcome"></p></div>
+        <div class="case-block"><h4>// ROLE</h4><p id="caseRole"></p></div>
+      </div>
+      <div class="ctmodal-actions" id="caseActions"></div>
+    </div>
+  </div>
+
+  <!-- ===== RESEARCH UNLOCK MODAL (skill proof) ===== -->
+  <div class="ctmodal" id="researchModal" aria-hidden="true">
+    <div class="ctmodal-backdrop" data-close="research"></div>
+    <div class="ctmodal-win ctmodal-win-sm" role="dialog" aria-labelledby="researchSkillName">
+      <button type="button" class="ctmodal-x" data-close="research" aria-label="Close research">✕</button>
+      <div class="ctmodal-meta">
+        <span class="ctmodal-id">RESEARCH // UNLOCKED</span>
+        <span class="ctmodal-tag" id="researchLevel"></span>
+      </div>
+      <h2 class="ctmodal-title" id="researchSkillName"></h2>
+      <div class="ctmodal-body">
+        <div class="case-block"><h4>// OPERATION</h4><p id="researchProject"></p></div>
+        <div class="case-block"><h4>// PROOF</h4><p id="researchProof"></p></div>
+      </div>
+      <div class="ctmodal-actions" id="researchActions"></div>
+    </div>
+  </div>
+
+  <!-- ===== KONAMI: HACK THE PLANET ===== -->
+  <div class="hacktheplanet" id="htp" aria-hidden="true">
+    <canvas id="htpCanvas"></canvas>
+    <div class="htp-text glitch" data-text="HACK THE PLANET">HACK THE PLANET</div>
+  </div>
+
+  <!-- ===== 3D BACKGROUND CANVAS ===== -->
   <canvas id="bg"></canvas>
 
+  <!-- ===== NAV ===== -->
   <header class="nav">
     <a href="#hero" class="nav-logo">
-      <img class="logo-badge" src="assets/dedsec-mark-trans.png" alt="" />
+      <img class="logo-badge" src="assets/dedsec-mark-trans.png" alt="DedSec mark" />
       <span>DEDSEC<span class="accent">_</span></span>
     </a>
     <nav class="nav-links" id="navLinks">
@@ -69,8 +197,9 @@
     </button>
   </header>
 
+  <!-- ===== HERO ===== -->
   <section id="hero" class="section hero">
-    <img class="hero-watermark" src="assets/dedsec-mark.png" alt="" loading="lazy" />
+    <img class="hero-watermark" src="assets/dedsec-mark.png" alt="" loading="lazy" decoding="async" />
     <div class="hero-grid-label">// SYSTEM: ctOS_v2.0 &nbsp; // NODE: <span id="heroLoc"></span></div>
     <div class="hero-content">
       <div class="hero-handle" id="heroHandle"></div>
@@ -88,6 +217,7 @@
     </a>
   </section>
 
+  <!-- ===== ABOUT ===== -->
   <section id="about" class="section about reveal">
     <div class="section-head">
       <span class="section-index">01</span>
@@ -105,17 +235,19 @@
     </div>
   </section>
 
+  <!-- ===== SKILLS ===== -->
   <section id="skills" class="section skills reveal">
     <div class="section-head">
       <span class="section-index">02</span>
       <h2 class="section-title" data-text="// ARSENAL">// ARSENAL</h2>
     </div>
-    <p class="restree-hint">// hover a node to inspect — proficiency shown as research charge</p>
+    <p class="restree-hint">// click a node to <b>RESEARCH</b> unlock — proof tied to an operation</p>
     <div class="restree-scroll">
       <div class="restree" id="skillsGrid"></div>
     </div>
   </section>
 
+  <!-- ===== PROJECTS ===== -->
   <section id="projects" class="section projects reveal">
     <div class="section-head">
       <span class="section-index">03</span>
@@ -124,19 +256,37 @@
     <div class="projects-grid" id="projectsGrid"></div>
   </section>
 
+  <!-- ===== CONTACT ===== -->
   <section id="contact" class="section contact reveal">
     <div class="section-head">
       <span class="section-index">04</span>
       <h2 class="section-title" data-text="// UPLINK">// UPLINK</h2>
     </div>
-    <div class="contact-terminal">
+    <div class="contact-terminal term-classic">
       <div class="term-bar">
-        <span class="term-btns"><i></i><i></i><i></i></span>
         <span class="term-title">secure_shell — uplink</span>
       </div>
-      <div class="term-body" id="termBody"></div>
+      <div class="term-screen">
+        <div class="term-bg" aria-hidden="true">
+          <img src="assets/dedsec-loader.gif" alt="" decoding="async" loading="lazy" />
+        </div>
+        <p class="term-hint" id="contactTermHint">Type <kbd>help</kbd> in shell · hold below to decrypt</p>
+        <div class="term-body" id="termBody"></div>
+      </div>
     </div>
-    <div class="socials" id="socials"></div>
+
+    <div class="hackbox" id="hackbox">
+      <div class="hack-info">
+        <span class="hack-target">// TARGET: operative.contact.enc</span>
+        <span class="hack-status" id="hackStatus">[ ENCRYPTED ]</span>
+      </div>
+      <button class="hack-btn" id="hackBtn" type="button" aria-label="Hold to hack">
+        <span class="hack-fill" id="hackFill"></span>
+        <span class="hack-label" id="hackLabel">HOLD TO HACK</span>
+      </button>
+    </div>
+
+    <div class="socials locked" id="socials"></div>
   </section>
 
   <footer class="footer">

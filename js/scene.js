@@ -1,7 +1,3 @@
-/* ====================================================================
-   3D BACKGROUND — "ctOS" reactive particle network with neon bloom.
-   Vanilla Three.js, loaded via import map (no build step).
-   ==================================================================== */
 import * as THREE from "three";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass }     from "three/addons/postprocessing/RenderPass.js";
