@@ -39,7 +39,7 @@ export const DATA = {
   // ---- Skills (value = proficiency 0-100) --------------------------------
   skills: [
     {
-      name: "AI Dev Tools (Cursor / Copilot / Claude)", level: 88,
+      name: "AI Dev Tools (Cursor / Copilot / Claude)", level: 80,
       research: { project: "ClearSight Recon", opId: "001", proof: "Built and shipped the full-stack buildathon MVP in 24h using Cursor + AI-assisted workflow." },
     },
     {
@@ -47,7 +47,7 @@ export const DATA = {
       research: { project: "AML Cancer Classification", opId: "002", proof: "Groq-powered chatbot over the cancer-detection pipeline; Fal AI image gen on ClearSight." },
     },
     {
-      name: "Prompt Engineering", level: 88,
+      name: "Prompt Engineering", level: 80,
       research: { project: "ClearSight Recon", opId: "001", proof: "Structured prompts for multilingual forensic sketch generation and stable Fal AI outputs." },
     },
     {
@@ -55,19 +55,19 @@ export const DATA = {
       research: { project: "Game HUD Event Detection", opId: "003", proof: "Streamlit deployment for YOLOv8 HUD detector; Python pipelines for training and inference." },
     },
     {
-      name: "ML / CV (TensorFlow · OpenCV · YOLOv8)", level: 65,
+      name: "ML / CV (TensorFlow · OpenCV · YOLOv8)", level: 70,
       research: { project: "Game HUD Event Detection", opId: "003", proof: "659-frame dataset, YOLOv8n at 96.75% mAP@50 with CLAHE preprocessing." },
     },
     {
-      name: "React / Node.js / JavaScript / Three.js / Vanilla JS", level: 65,
+      name: "React / Node.js / JavaScript / Three.js / Vanilla JS", level: 70,
       research: { project: "ClearSight Recon", opId: "001", proof: "React + Vite front end with PDF export and multilingual UI under hackathon deadline." },
     },
     {
-      name: "Databases (MongoDB · MySQL · Firebase)", level: 65,
+      name: "Databases (MongoDB · MySQL · Firebase)", level: 70,
       research: { project: "Smart File Delivery Robot", opId: "004", proof: "Firebase REST integration for real-time IoT telemetry on the delivery robot dashboard." },
     },
     {
-      name: "Git · Docker · Vercel · Netlify · GitHub Pages", level: 70,
+      name: "Git · Docker · Vercel · Netlify · GitHub Pages", level: 75,
       research: { project: "ClearSight Recon", opId: "001", proof: "Deployed production build to Netlify; versioned sprint work in Git across team ops." },
     },
   ],
