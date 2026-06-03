@@ -185,8 +185,10 @@ const SFX = (() => {
     },
     profilerScan: () => {
       if (!enabled) return;
-      [0, 1, 2].forEach((i) => setTimeout(() => play(pack.type, 0.38, 0.9 + i * 0.1), i * 85));
-      setTimeout(() => play(pack.glitch, 0.12), 250);
+      ensure();
+      const t = pack.type, g = pack.glitch;
+      [0, 1, 2].forEach((i) => setTimeout(() => play(t, 0.38, 0.9 + i * 0.1), i * 85));
+      setTimeout(() => play(g, 0.12), 250);
     },
     glitch: () => { if (!enabled) return; play(pack.glitch, 0.24); tone(ORANGE_HZ * 1.5, 0.05, "sawtooth", 0.028, -50); },
     powerOn: () => {
