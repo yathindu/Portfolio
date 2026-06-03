@@ -32,18 +32,18 @@ export const DATA = {
       { value: "24h",   label: "Full-stack prototype shipped" },
       { value: "96.7%", label: "YOLOv8 mAP@50" },
       { value: "84%",   label: "Cancer Detection Accuracy" },
-      { value: "4+",    label: "Production Projects" },
+      { value: "5+",    label: "Production Projects" },
     ],
   },
 
   // ---- Skills (value = proficiency 0-100) --------------------------------
   skills: [
     {
-      name: "AI Dev Tools (Cursor / Copilot / Claude)", level: 95,
+      name: "AI Dev Tools (Cursor / Copilot / Claude)", level: 88,
       research: { project: "ClearSight Recon", opId: "001", proof: "Built and shipped the full-stack buildathon MVP in 24h using Cursor + AI-assisted workflow." },
     },
     {
-      name: "LLM Integration (Groq · Fal AI · RAG)", level: 86,
+      name: "LLM Integration (Groq · Fal AI · RAG)", level: 65,
       research: { project: "AML Cancer Classification", opId: "002", proof: "Groq-powered chatbot over the cancer-detection pipeline; Fal AI image gen on ClearSight." },
     },
     {
@@ -51,23 +51,23 @@ export const DATA = {
       research: { project: "ClearSight Recon", opId: "001", proof: "Structured prompts for multilingual forensic sketch generation and stable Fal AI outputs." },
     },
     {
-      name: "Python (FastAPI · Flask · Streamlit)", level: 85,
+      name: "Python (FastAPI · Flask · Streamlit)", level: 70,
       research: { project: "Game HUD Event Detection", opId: "003", proof: "Streamlit deployment for YOLOv8 HUD detector; Python pipelines for training and inference." },
     },
     {
-      name: "ML / CV (TensorFlow · OpenCV · YOLOv8)", level: 82,
+      name: "ML / CV (TensorFlow · OpenCV · YOLOv8)", level: 65,
       research: { project: "Game HUD Event Detection", opId: "003", proof: "659-frame dataset, YOLOv8n at 96.75% mAP@50 with CLAHE preprocessing." },
     },
     {
-      name: "React / Node.js / JavaScript", level: 80,
+      name: "React / Node.js / JavaScript / Three.js / Vanilla JS", level: 65,
       research: { project: "ClearSight Recon", opId: "001", proof: "React + Vite front end with PDF export and multilingual UI under hackathon deadline." },
     },
     {
-      name: "Databases (MongoDB · MySQL · Firebase)", level: 78,
+      name: "Databases (MongoDB · MySQL · Firebase)", level: 65,
       research: { project: "Smart File Delivery Robot", opId: "004", proof: "Firebase REST integration for real-time IoT telemetry on the delivery robot dashboard." },
     },
     {
-      name: "Git · Docker · Vercel · Netlify", level: 80,
+      name: "Git · Docker · Vercel · Netlify · GitHub Pages", level: 70,
       research: { project: "ClearSight Recon", opId: "001", proof: "Deployed production build to Netlify; versioned sprint work in Git across team ops." },
     },
   ],
@@ -128,6 +128,20 @@ export const DATA = {
         problem: "Campus/office file handoff needed a low-cost autonomous carrier with live status, not manual runs.",
         outcome: "Line-following robot with obstacle avoidance and Firebase-backed dashboard for real-time telemetry.",
         role: "Firmware + IoT integration",
+      },
+    },
+    {
+      id: "005",
+      title: "DedSec Portfolio",
+      tag: "FRONTEND / CREATIVE",
+      description:
+        "Watch Dogs 2 / DedSec-themed developer portfolio. Live Three.js particle network with bloom post-processing, procedural WebAudio SFX, interactive ctOS shell terminal, hold-to-hack contact gate, and visitor profiler — no build step required.",
+      tech: ["Three.js", "Vanilla JS", "WebAudio API", "CSS", "GitHub Pages"],
+      repo: "https://github.com/yathindu/Portfolioo",
+      caseStudy: {
+        problem: "Stand out from generic portfolio templates — show personality, craft, and frontend depth in one experience.",
+        outcome: "Fully interactive ctOS-themed portfolio with 3D background, procedural audio, terminal shell, and case study modals. You're looking at it.",
+        role: "Design + full frontend build",
       },
     },
   ],
