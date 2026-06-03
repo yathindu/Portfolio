@@ -1,3 +1,6 @@
+/* ====================================================================
+   MAIN — content injection, loader, typewriter, cursor, FX, scroll
+   ==================================================================== */
 import { DATA } from "./data.js";
 
 const REDUCED_MOTION = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -161,7 +164,7 @@ const SFX = (() => {
     decrypt: throttled(() => tone(600 + Math.random() * 400, 0.008, "square", 0.014), 130),
     bootStep: throttled(() => tone(320 + Math.random() * 80, 0.04, "square", 0.032), 380),
     hackTick: (p = 0) => tone(280 + p * 520, 0.05, "sawtooth", 0.038, 40),
-    hackFail: () => { play(pack.glitch, 0.22); tone(180, 0.1, "square", 0.03, -70); },
+    hackFail: () => { if (!enabled) return; play(pack.glitch, 0.22); tone(180, 0.1, "square", 0.03, -70); },
     /* Hold-to-hack / Konami — diminished breach (spaced, one finish hit) */
     success: () => {
       ensure();
@@ -181,11 +184,13 @@ const SFX = (() => {
       tone(CYAN_HZ, 0.055, "sine", 0.028);
     },
     profilerScan: () => {
+      if (!enabled) return;
       [0, 1, 2].forEach((i) => setTimeout(() => play(pack.type, 0.38, 0.9 + i * 0.1), i * 85));
       setTimeout(() => play(pack.glitch, 0.12), 250);
     },
-    glitch: () => { play(pack.glitch, 0.24); tone(ORANGE_HZ * 1.5, 0.05, "sawtooth", 0.028, -50); },
+    glitch: () => { if (!enabled) return; play(pack.glitch, 0.24); tone(ORANGE_HZ * 1.5, 0.05, "sawtooth", 0.028, -50); },
     powerOn: () => {
+      if (!enabled) return;
       tone(220, 0.05, "square", 0.032);
       setTimeout(() => play(pack.modal, 0.5, 0.85), 60);
       setTimeout(() => tone(CYAN_HZ * 1.5, 0.1, "sine", 0.04), 140);
