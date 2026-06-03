@@ -1,6 +1,4 @@
-/* ====================================================================
-   MAIN — content injection, loader, typewriter, cursor, FX, scroll
-   ==================================================================== */
+
 import { DATA } from "./data.js";
 
 const REDUCED_MOTION = matchMedia("(prefers-reduced-motion: reduce)").matches;
